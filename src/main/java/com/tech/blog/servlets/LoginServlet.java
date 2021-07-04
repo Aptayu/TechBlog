@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.tech.blog.dao.UserDao;
+import com.tech.blog.entities.Message;
 import com.tech.blog.entities.User;
 import com.tech.blog.helper.ConnectionProvider;
 
@@ -46,7 +47,12 @@ public class LoginServlet extends HttpServlet {
 		User u = dao.getUserByEmailAndPassword(userEmail, userPassword);
 		if (u == null) {
 //			login unsuccess
-			out.println("Invalid Credentials...try with valid one");
+//			out.println("Invalid Credentials...try with valid one")
+			Message msg = new Message("Invalid Credentials...try with a valid one", "error", "alert-danger");
+			HttpSession s = request.getSession();
+			s.setAttribute("msg", msg);
+			response.sendRedirect("login_page.jsp");
+
 		} else {
 //			login success lets store it in session you can also use cookies(more code)
 			HttpSession s = request.getSession();
