@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="com.tech.blog.entities.User" %>
+<%@page import="com.tech.blog.entities.Message"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +24,28 @@
 							<h2>Login here</h2>
 
 						</div>
+						<%
+							/* One way to give the message on the login page itself but it's better
+							if we make a proper of message so we can use it*/
+							/* User user = (User)session.getAttribute("currentUser");
+							if(user == null){
+								out.print("<h3>Invalid credentials</h3>"); 
+							} */
+							Message m = (Message) session.getAttribute("msg");
+                            if (m != null) {
+                        %>
+                        <div class="alert <%= m.getCssClass() %>" role="alert">
+                            <%= m.getContent() %>
+                        </div> 
+
+
+                        <%        
+                                session.removeAttribute("msg");
+                            }
+						%>
+						
 						<div class="card-body">
-							<form action="LoginServlet" method="post">
+							<form action=  "LoginServlet" method="post">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Email address</label>
 									<input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required> 
