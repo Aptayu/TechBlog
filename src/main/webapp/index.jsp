@@ -27,7 +27,7 @@
 				<h3 class = "display-3">Welcome to Tech Blog</h3>
 				<p>A programming language is a formal language comprising a set of strings that produce various kinds of machine code output. Programming languages are one kind of computer language, and are used in computer programming to implement algorithms.</p>
 				
-				<button class="btn btn-outline-light btn-lg"><span class="fa fa-arrow-circle-o-right"></span>Start it's free</button>
+				<a href="register_page.jsp" class="btn btn-outline-light btn-lg"><span class="fa fa-arrow-circle-o-right"></span>Start it's free</a>
 				<a href="login_page.jsp" class="btn btn-outline-light btn-lg"><span class="fa fa-spinner fa-spin"></span>Login</a>
 			</div>
 		

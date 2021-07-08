@@ -52,6 +52,8 @@ public class UserDao {
 				user.setUser_name(name);
 				user.setId(set.getInt("id"));
 				user.setEmail(set.getString("email"));
+				user.setAbout(set.getString("about"));
+				user.setReg_date(set.getTimestamp("reg_date"));
 
 			}
 
@@ -59,6 +61,26 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public boolean updateUser(User user) {
+		boolean f = false;
+		try {
+			String query = "update users set user_name=?, email=?, password=?, about=? where id=?";
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, user.getUser_name());
+			pstmt.setString(2, user.getEmail());
+			pstmt.setString(3, user.getPassword());
+			pstmt.setString(4, user.getAbout());
+			pstmt.setInt(5, user.getId());
+
+			pstmt.executeUpdate();
+			f = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return f;
 	}
 
 }
